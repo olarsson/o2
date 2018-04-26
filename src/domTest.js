@@ -2,10 +2,10 @@
 
   console.clear();
 
-  var html = document.querySelector('body').innerHTML;
+  var html = document.querySelector('body main').outerHTML;
 
   var resetDOM = () => {
-    document.querySelector('body').parentElement.innerHTML = html;
+    document.querySelector('body').innerHTML = html;
   };
 
   (() => {
@@ -33,12 +33,20 @@
 
   (() => {
     o('body')._addClass('oneB');
-    console.log('Has class success: ', (o('body')._hasClass('oneB') === true && $('body').hasClass('oneB') === true));
+    console.log('Has class success: ', (o('body')[0]._hasClass('oneB') === true && $('body').hasClass('oneB') === true));
+    resetDOM();
+  })();
+
+  (() => {
+    let first = [...o('body')[0]._find('.a')],
+       second = [...$('body').find('.a')],
+        equal = first.length == second.length
+         && first.every((element, index)=> element === second[index] );
+    console.log('Find success: ', equal);
     resetDOM();
   })();
 
 
-  
   //console.log('Get closest: ', el('.b').o.getClosest('.test') )
   //console.log( el('.a').o.getParents('.test') )
   //console.log(addClass);
@@ -55,5 +63,5 @@
 
   console.log( el('.test').o.find('div') )
   console.log( el('body').o.find('.a,.b') ) */
-  
+
 })();

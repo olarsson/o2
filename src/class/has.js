@@ -1,6 +1,6 @@
 export const hasClass = function (cls) {
   let logic = function (el) {
-    return (' ' + el.className + ' ').indexOf(' ' + cls + ' ') > -1;
+    return new RegExp("(^| )"+cls+"( |$)").test(el.className);
   };
   if (this.length === undefined) {
     //Only 1 item
