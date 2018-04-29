@@ -1,7 +1,4 @@
 export const isElementPartiallyInViewport = function(el) {
-    if (typeof jQuery === "function" && el instanceof jQuery) {
-    el = el[0];
-  }
   var rect = el.getBoundingClientRect();
   var rTop = rect.top;
   if (rTop >= 0) rTop = -1;

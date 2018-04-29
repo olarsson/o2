@@ -31,7 +31,7 @@ window.o._debounce = debounce;
 //window.o._isElementPartiallyInViewport = isElemPinWP;
 
 //Getter constructions of the helper functions
-//Object.defineProperty(o, '_hasTouch', { get: hasTouch });
+Object.defineProperty(o, '_hasTouch', { get: hasTouch });
 
 //Extend the native objects with custom functions
 [NodeList, Element].map(types => {
