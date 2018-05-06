@@ -1,6 +1,7 @@
 "use strict";
 
 window.$ = require('jquery') //For testing, ironically..
+import { log } from 'util';
 
 import {addClass}     from './class/add.js';
 import {removeClass}  from './class/remove.js';
@@ -10,11 +11,11 @@ import {getClosest}   from './traverse/getClosest.js';
 import {getParents}   from './traverse/getParents.js';
 import {find}         from './traverse/find.js';
 
-import {debounce}     from './helpers/debounce.js';
-import {hasTouch}     from './helpers/hasTouch.js';
-//import {isElemPinWP}   from './helpers/isElementPartiallyInViewport.js';
-
-import { log } from 'util';
+import {debounce}                   from './helpers/debounce.js';
+import {hasTouch}                   from './helpers/hasTouch.js';
+import {isElementInViewport}        from './helpers/isElementInViewport.js';
+import {isElementMostlyInViewport}  from './helpers/isElementMostlyInViewport.js';
+import {throttle}                   from './helpers/throttle.js';
 
 //Create the base "o" object that primarily functions as an element selector
 window.o = (selector) => {
@@ -28,10 +29,12 @@ window.o = (selector) => {
 
 //Extend the "o" object with custom helpers
 window.o._debounce = debounce;
-//window.o._isElementPartiallyInViewport = isElemPinWP;
+window.o._isElementInViewport = isElementInViewport;
+window.o._isElementMostlyInViewport = isElementMostlyInViewport;
+window.o._throttle = throttle;
 
 //Getter constructions of the helper functions
-Object.defineProperty(o, '_hasTouch', { get: hasTouch });
+Object.defineProperty(o, '_hasTouch', { get: hasTouch });  //elem._hasTouch; [BOOLEAN]
 
 //Extend the native objects with custom functions
 [NodeList, Element].map(types => {
@@ -39,7 +42,6 @@ Object.defineProperty(o, '_hasTouch', { get: hasTouch });
   types.prototype._addClass = addClass;       //elem._addClass([classes STRING])
   types.prototype._removeClass = removeClass; //elem._removeClass([classes STRING])
   types.prototype._hasClass = hasClass;       //elem._hasClass([class STRING])
-
   types.prototype._find = find;               //elem._find([selector STRING])
 
   // Get the closest matching element up the DOM tree.
