@@ -1,7 +1,10 @@
 "use strict";
 
-window.$ = require('jquery') //For testing, ironically..
-import { log } from 'util';
+if (process.env.NODE_ENV === 'development') {
+  window.$ = require('jquery') //For testing, ironically..
+}
+
+//import { log } from 'util';
 
 import {addClass}     from './class/add.js';
 import {removeClass}  from './class/remove.js';
