@@ -1,7 +1,8 @@
 "use strict";
 
+//Testing only
 if (process.env.NODE_ENV === 'development') {
-  window.$ = require('jquery') //For testing, ironically..
+  window.$ = require('jquery')
 }
 
 //import { log } from 'util';
@@ -9,6 +10,8 @@ if (process.env.NODE_ENV === 'development') {
 import {addClass}     from './class/add.js';
 import {removeClass}  from './class/remove.js';
 import {hasClass}     from './class/has.js';
+
+import {toArray}      from './array/toArray.js';
 
 import {getClosest}   from './traverse/getClosest.js';
 import {getParents}   from './traverse/getParents.js';
@@ -38,6 +41,13 @@ window.o._throttle = throttle;
 
 //Getter constructions of the helper functions
 Object.defineProperty(o, '_hasTouch', { get: hasTouch });  //elem._hasTouch; [BOOLEAN]
+
+
+[NodeList].map(types => {
+
+  types.prototype._toArray = toArray;         //elem._toArray([nodelist NODELIST])
+
+});
 
 //Extend the native objects with custom functions
 [NodeList, Element].map(types => {
