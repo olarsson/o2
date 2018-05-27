@@ -3,7 +3,7 @@ body {
   flex-direction: column;
   background-color: lightgray;
   border: 15px solid darkgray;
-  height: 150vh;
+  height: 250vh;
   margin: 0;
   padding: 0;
 }
@@ -19,11 +19,11 @@ body {
 }
 
 .floater1 {
-  top: 30vh;
+  top: 110vh;
   background: lightblue;
 }
 
 .floater2 {
-  top: 110vh;
+  top: 160vh;
   background: darkblue;
 }

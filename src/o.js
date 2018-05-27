@@ -1,5 +1,7 @@
 "use strict";
 
+import './polyfills/arrayFrom.js';
+
 //Testing only
 if (process.env.NODE_ENV === 'development') {
   window.$ = require('jquery')
@@ -20,7 +22,7 @@ import {find}         from './traverse/find.js';
 import {debounce}                   from './helpers/debounce.js';
 import {hasTouch}                   from './helpers/hasTouch.js';
 import {isElementInViewport}        from './helpers/isElementInViewport.js';
-import {isElementMostlyInViewport}  from './helpers/isElementMostlyInViewport.js';
+import {isElementPartiallyInViewport}  from './helpers/isElementPartiallyInViewport.js';
 import {throttle}                   from './helpers/throttle.js';
 
 //Create the base "o" object that primarily functions as an element selector
@@ -36,7 +38,7 @@ window.o = (selector) => {
 //Extend the "o" object with custom helpers
 window.o._debounce = debounce;
 window.o._isElementInViewport = isElementInViewport;
-window.o._isElementMostlyInViewport = isElementMostlyInViewport;
+window.o._isElementMostlyInViewport = isElementPartiallyInViewport;
 window.o._throttle = throttle;
 
 //Getter constructions of the helper functions
