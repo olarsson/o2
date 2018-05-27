@@ -18,6 +18,11 @@ body {
   border: 4px solid black;
 }
 
+.floater1.active,
+.floater2.active {
+  background: red;
+}
+
 .floater1 {
   top: 110vh;
   background: lightblue;

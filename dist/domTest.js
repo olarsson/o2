@@ -9,9 +9,17 @@
   };
 
   (function() {
-    document.addEventListener('scroll', function() {
-      o._isElementMostlyInViewport(o('.floater1')[0], 25)
-    })
+    document.addEventListener('scroll', o._debounce(function() {
+
+      var elem = o('.floater1')[0];
+
+      if (o._isElementXPercentInViewport(elem, 30)) {
+        elem.classList.add('active')
+      } else {
+        elem.classList.remove('active')
+      }
+
+    }, 10))
   })();
 
   (function() {
@@ -21,7 +29,7 @@
   })();
 
   (function() {
-    let success = true;
+    var success = true;
     o('.domelem')._addClass('multiA multiB');
     $('.domelem').map(function(idx, elem) {
       if (elem.className !== "domelem multiA multiB") success = false;
@@ -44,7 +52,7 @@
   })();
 
   (function() {
-    let first = Array.from(o('body')[0]._find('.a')),
+    var first = Array.from(o('body')[0]._find('.a')),
        second = Array.from($('body').find('.a')),
         equal = first.length == second.length
          && first.every(function(element, index) {
